@@ -1,0 +1,91 @@
+@domain = http://localhost:3000
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NTA1NTk3Mjh9.qPPpDDNNfX8ClEMPfZ5DGwozBUXAp-sXxXGVZg-DScM
+
+
+### Users Create (signup)(WORKING)
+POST {{ domain }}/users
+Content-Type: application/json
+
+{
+  "name": "Jason",
+  "email": "jason@gmail.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+
+### Sessions Create (login)(WORKING)
+POST {{ domain }}/sessions
+Content-Type: application/json
+
+{
+  "email":"melanie@gmail.com",
+  "password": "password"
+}
+
+### Users Show(Working)
+GET {{ domain }}/users/1
+Authorization: Bearer {{ jwt }}
+
+### Users Destroy(Working)
+DELETE {{ domain }}/users/:id
+Authorization: Bearer {{ jwt }}
+
+### listings Create(Working)
+POST {{ domain }}/listings
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "brand": "Suzuki",
+  "model": "GSXR-750",
+  "year": "2005",
+  "description": "the most excellent of track machines",
+  "image_url": "https://www.motorcyclespecs.co.za/Gallery%20%20A/SUZUKI%20GSXR750%20%2004%20%203.jpg",
+  "location": "Tempe, Arizona"  
+}
+
+### Listings Index(WORKING)
+GET {{ domain }}/listings
+
+
+### Listings Show(WORKING)
+GET {{ domain }}/listings/1
+
+### Listings Update(WORKING)
+PATCH {{ domain }}/listings/1
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "brand": "KTM"
+}
+
+### Listings Destroy(WORKING)
+DELETE {{ domain }}/listings/1
+
+### Conversations Index(WORKING)
+GET {{ domain }}/conversations
+Authorization: Bearer {{ jwt }}
+
+### Conversations Create(Working)
+POST {{ domain }}/conversations
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "leaser_id": 7  
+}
+
+### Conversations Show(Working)
+GET {{ domain }}/conversations/:id
+Authorization: Bearer {{ jwt }}
+
+### Messages Create(Working)
+POST {{ domain }}/messages
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "conversation_id": 1,
+  "body": "testing messagge"
+}
